@@ -2,6 +2,7 @@
 Self-Driving Car Engineer Nanodegree Program
 
 Implemented a C++ Unscented Kalman Filter program to fusion Lidar and Rador sensor data input. Lidar data can accurately define an object's location. Radar data provides not just location but also speed data that can be used to track an object's velocity relative to the sensor. 
+
 ---
 
 ## Dependencies
