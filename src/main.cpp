@@ -140,6 +140,7 @@ int main(int argc, char* argv[]) {
   // frame)
 
   size_t number_of_measurements = measurement_pack_list.size();
+  cout << "number_of_measurements:" << number_of_measurements << endl;
 
   // column names for output file
   out_file_ << "time_stamp" << "\t";  
