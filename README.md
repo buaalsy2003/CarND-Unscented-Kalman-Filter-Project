@@ -32,6 +32,7 @@ obj_pose-laser-radar-synthetic-input.txt
 
 
 I also compared this Unscented Kalman Filter with previous project using Extended Kalman Filter. 
+
 UKF project result for sample-laser-radar-measurement-data-1.txt:
 * px	       0.0350618
 * py	       0.0418754
@@ -43,6 +44,7 @@ EKF project result for sample-laser-radar-measurement-data-1.txt:
 * py	       0.057777
 * vx	       0.521125
 * vy	       0.53581
+
 It shows that UKF is more accurate regarding non-linear input. 
 
 ## Future Work
