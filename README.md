@@ -45,7 +45,7 @@ EKF project result for sample-laser-radar-measurement-data-1.txt:
 * vx	       0.521125
 * vy	       0.53581
 
-It shows that UKF is more accurate regarding non-linear input. 
+It shows that UKF is more accurate in handling non-linear equations. 
 
 ## Future Work
 
