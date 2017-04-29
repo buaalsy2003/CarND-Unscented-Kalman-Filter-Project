@@ -30,12 +30,14 @@ obj_pose-laser-radar-synthetic-input.txt
 * vx        0.360615
 * vy        0.270453
 
+
 I also compared this Unscented Kalman Filter with previous project using Extended Kalman Filter. 
 UKF project result for sample-laser-radar-measurement-data-1.txt:
 * px	       0.0350618
 * py	       0.0418754
 * vx	       0.524488
 * vy	       0.48888
+
 EKF project result for sample-laser-radar-measurement-data-1.txt:
 * px	       0.0620209
 * py	       0.057777
