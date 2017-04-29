@@ -30,10 +30,12 @@ UKF::UKF() {
 		0, 0, 0, 0, 1;
 
   // Process noise standard deviation longitudinal acceleration in m/s^2
-  std_a_ = 0.1;//need tune
+  // I am changing it from 0.1, 0.25, 0.5, 0.75, RMSE becomes smaller
+  std_a_ = 1.0/*0.1*/;//need tune
 
   // Process noise standard deviation yaw acceleration in rad/s^2
-  std_yawdd_ = 0.1;//need tune
+  // I am changing it from 0.1, 0.5, 1.0, 1.5, 2.0, 2.5 and the RMSE is getting smaller 
+  std_yawdd_ = 3.0/*0.1*/;//need tune
 
   // Laser measurement noise standard deviation position1 in m
   std_laspx_ = 0.15;
@@ -128,7 +130,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
       */
       //if (measurement_pack.raw_measurements_[0] == 0 or measurement_pack.raw_measurements_[1] == 0)
       //    return;       
-      x_ << meas_package.raw_measurements_[0], meas_package.raw_measurements_[1], 0, 0;
+      x_ << meas_package.raw_measurements_[0], meas_package.raw_measurements_[1], 0, 0, 0;
       
     }
     
@@ -139,7 +141,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
     
     weights_(0) = lambda_ / (lambda_ + n_aug_);
     for(int i = 1; i < weights_.size(); i++)
-		weights_(i) = (n_aug_ + lambda_) / 2.0;
+		weights_(i) = 0.5 / (n_aug_ + lambda_);
 
     // done initializing, no need to predict or update
     is_initialized_ = true;
@@ -188,6 +190,8 @@ void UKF::Prediction(double delta_t) {
   P_aug.topLeftCorner(5,5) = P_;
   P_aug(5,5) = std_a_*std_a_;
   P_aug(6,6) = std_yawdd_*std_yawdd_;
+
+  //cout << "P_aug = " << P_aug << endl;
 
   //create square root matrix
   MatrixXd L = P_aug.llt().matrixL();
@@ -264,8 +268,8 @@ void UKF::Prediction(double delta_t) {
 
     P_ = P_ + weights_(i) * x_diff * x_diff.transpose() ;
   }
-  cout << "x_ = " << x_ << endl;
-  cout << "P_ = " << P_ << endl;
+  //cout << "x_ = " << x_ << endl;
+  //cout << "P_ = " << P_ << endl;
 }
 
 /**
